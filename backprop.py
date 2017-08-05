@@ -1,17 +1,8 @@
-# -*- coding: utf-8 -*-
-"""
-Created on Sat Aug  5 11:28:20 2017
-
-@author: lvinze
-"""
 
 import numpy as np
 
 
 def sigmoid(x):
-    """
-    Calculate sigmoid
-    """
     return 1 / (1 + np.exp(-x))
 
 
@@ -34,19 +25,21 @@ output = sigmoid(output_layer_in)
 
 ## Backwards pass
 ## TODO: Calculate output error
-error = None
+#the error attributed to hidden unit j is the output errors, scaled by the weights between the output and hidden layers (and the gradient):
+error = target - output
 
 # TODO: Calculate error term for output layer
-output_error_term = None
+output_error_term = output * (1 - output)  * error
 
-# TODO: Calculate error term for hidden layer
-hidden_error_term = None
+
+hidden_error_term = np.dot(output_error_term, weights_hidden_output) * \
+                    hidden_layer_output * (1 - hidden_layer_output)
 
 # TODO: Calculate change in weights for hidden layer to output layer
-delta_w_h_o = None
+delta_w_h_o = learnrate * output_error_term * hidden_layer_output
 
 # TODO: Calculate change in weights for input layer to hidden layer
-delta_w_i_h = None
+delta_w_i_h = learnrate * hidden_error_term * X[:,None]
 
 print('Change in weights for hidden layer to output layer:')
 print(delta_w_h_o)
