@@ -1,4 +1,21 @@
+# -*- coding: utf-8 -*-
+"""
+Created on Sat Aug  5 14:49:14 2017
+
+@author: lvinze
+"""
+
+import numpy as np
+import pandas as pd
+
+data_path = 'deep-learning/first-neural-network/Bike-Sharing-Dataset/hour.csv'
+
+rides = pd.read_csv(data_path)
+
 import unittest
+
+def MSE(y, Y):
+    return np.mean((y-Y)**2)
 
 inputs = np.array([[0.5, -0.2, 0.1]])
 targets = np.array([[0.4]])
@@ -8,15 +25,11 @@ test_w_i_h = np.array([[0.1, -0.2],
 test_w_h_o = np.array([[0.3],
                        [-0.1]])
 
-class TestMethods(unittest.TestCase):
-    
-    ##########
-    # Unit tests for data loading
-    ##########
-    
+class TestMethods(unittest.TestCase):    
     def test_data_path(self):
         # Test that file path to dataset has been unaltered
-        self.assertTrue(data_path.lower() == 'bike-sharing-dataset/hour.csv')
+        self.assertTrue(data_path.lower() == 'deep-learning/first-neural-network/bike-sharing-dataset/hour.csv')
+        
         
     def test_data_loaded(self):
         # Test that data frame loaded
